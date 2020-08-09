@@ -5,66 +5,66 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class Book implements Serializable {
 	
-	private String tItLe;
-	private String AuThOr;
-	private String CALLNO;
-	private int iD;
+	private String titLe;
+	private String author;
+	private String callNo;
+	private int id;
 	
-	private enum sTaTe { AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
-	private sTaTe StAtE;
+	private enum State { AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
+	private State state;
 	
 	
 	public Book(String author, String title, String callNo, int id) {
-		this.AuThOr = author;
-		this.tItLe = title;
-		this.CALLNO = callNo;
-		this.iD = id;
-		this.StAtE = sTaTe.AVAILABLE;
+		this.author = author;
+		this.titLe= title;
+		this.callNo = callNo;
+		this.id = id;
+		this.state = state.AVAILABLE;
 	}
 	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Book: ").append(iD).append("\n")
-		  .append("  Title:  ").append(tItLe).append("\n")
-		  .append("  Author: ").append(AuThOr).append("\n")
-		  .append("  CallNo: ").append(CALLNO).append("\n")
-		  .append("  State:  ").append(StAtE);
+		sb.append("Book: ").append(id).append("\n")
+		  .append("  Title:  ").append(titLe).append("\n")
+		  .append("  Author: ").append(author).append("\n")
+		  .append("  CallNo: ").append(callNo).append("\n")
+		  .append("  State:  ").append(state);
 		
 		return sb.toString();
 	}
 
-	public Integer gEtId() {
-		return iD;
+	public Integer getID() {
+		return id;
 	}
 
-	public String gEtTiTlE() {
-		return tItLe;
+	public String getTitLe() {
+		return titLe;
 	}
 
 
 	
-	public boolean iS_AvAiLaBlE() {
-		return StAtE == sTaTe.AVAILABLE;
+	public boolean is_Available() {
+		return state == state.AVAILABLE;
 	}
 
 	
-	public boolean iS_On_LoAn() {
-		return StAtE == sTaTe.ON_LOAN;
+	public boolean is_On_Loan() {
+		return state == state.ON_LOAN;
 	}
 
 	
-	public boolean iS_DaMaGeD() {
-		return StAtE == sTaTe.DAMAGED;
+	public boolean is_Damaged() {
+		return state == state.DAMAGED;
 	}
 
 	
-	public void BoRrOw() {
-		if (StAtE.equals(sTaTe.AVAILABLE)) 
-			StAtE = sTaTe.ON_LOAN;
+	public void borrOw() {
+		if (state.equals(state.AVAILABLE))
+			state = state.ON_LOAN;
 		
 		else 
-			throw new RuntimeException(String.format("Book: cannot borrow while book is in state: %s", StAtE));
-		
+			throw new RuntimeException(String.format("Book: cannot borrow while book is in state: %s", state);
+		)
 		
 	}
 
