@@ -23,10 +23,10 @@ import java.util.Map;
 @SuppressWarnings("serial")
 public class Library implements Serializable {
 	
-	private static final String lIbRaRyFiLe = "library.obj";
-	private static final int lOaNlImIt = 2;
+	private static final String libraryFile = "library.obj";
+	private static final int loanLimit = 2;
 	private static final int loanPeriod = 2;
-	private static final double FiNe_PeR_DaY = 1.0;
+	private static final double finePerDay = 1.0;
 	private static final double maxFinesOwed = 1.0;
 	private static final double damageFee = 2.0;
 	
@@ -57,9 +57,9 @@ public class Library implements Serializable {
 	
 	public static synchronized Library GeTiNsTaNcE() {		
 		if (SeLf == null) {
-			Path PATH = Paths.get(lIbRaRyFiLe);			
+			Path PATH = Paths.get(libraryFile);
 			if (Files.exists(PATH)) {	
-				try (ObjectInputStream LiBrArY_FiLe = new ObjectInputStream(new FileInputStream(lIbRaRyFiLe));) {
+				try (ObjectInputStream LiBrArY_FiLe = new ObjectInputStream(new FileInputStream(libraryFile));) {
 			    
 					SeLf = (Library) LiBrArY_FiLe.readObject();
 					Calendar.gEtInStAnCe().SeT_DaTe(SeLf.lOaN_DaTe);
@@ -78,7 +78,7 @@ public class Library implements Serializable {
 	public static synchronized void SaVe() {
 		if (SeLf != null) {
 			SeLf.lOaN_DaTe = Calendar.gEtInStAnCe().gEt_DaTe();
-			try (ObjectOutputStream LiBrArY_fIlE = new ObjectOutputStream(new FileOutputStream(lIbRaRyFiLe));) {
+			try (ObjectOutputStream LiBrArY_fIlE = new ObjectOutputStream(new FileOutputStream(libraryFile));) {
 				LiBrArY_fIlE.writeObject(SeLf);
 				LiBrArY_fIlE.flush();
 				LiBrArY_fIlE.close();	
@@ -159,12 +159,12 @@ public class Library implements Serializable {
 
 	
 	public int gEt_LoAn_LiMiT() {
-		return lOaNlImIt;
+		return loanLimit;
 	}
 
 	
 	public boolean cAn_MeMbEr_BoRrOw(Member member) {		
-		if (member.gEt_nUmBeR_Of_CuRrEnT_LoAnS() == lOaNlImIt ) 
+		if (member.gEt_nUmBeR_Of_CuRrEnT_LoAnS() == loanLimit)
 			return false;
 				
 		if (member.FiNeS_OwEd() >= maxFinesOwed) 
@@ -179,7 +179,7 @@ public class Library implements Serializable {
 
 	
 	public int gEt_NuMbEr_Of_LoAnS_ReMaInInG_FoR_MeMbEr(Member MeMbEr) {		
-		return lOaNlImIt - MeMbEr.gEt_nUmBeR_Of_CuRrEnT_LoAnS();
+		return loanLimit - MeMbEr.gEt_nUmBeR_Of_CuRrEnT_LoAnS();
 	}
 
 	
@@ -205,7 +205,7 @@ public class Library implements Serializable {
 	public double CaLcUlAtE_OvEr_DuE_FiNe(Loan LoAn) {
 		if (LoAn.Is_OvEr_DuE()) {
 			long DaYs_OvEr_DuE = Calendar.gEtInStAnCe().GeT_DaYs_DiFfErEnCe(LoAn.GeT_DuE_DaTe());
-			double fInE = DaYs_OvEr_DuE * FiNe_PeR_DaY;
+			double fInE = DaYs_OvEr_DuE * finePerDay;
 			return fInE;
 		}
 		return 0.0;		
