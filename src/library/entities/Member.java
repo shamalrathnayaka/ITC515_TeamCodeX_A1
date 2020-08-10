@@ -20,7 +20,7 @@ public class Member implements Serializable {
 	private String firstName;
 	private String emailAddress;
 	private int phoneNumber;
-	private int MemberId;
+	private int memberId;
 	private double finesOwing;
 	
 	private Map<Integer, Loan> currentLoans;
@@ -55,18 +55,18 @@ public class Member implements Serializable {
 		return sb.toString();
 	}
 
-	public int GeT_ID() {
+	public int getID() {
 		return memberId;
 	}
 
 	
-	public List<Loan> GeT_LoAn() {
-		return new ArrayList<Loan>(Current_Loans.values());
+	public List<Loan> getLoan() {
+		return new ArrayList<Loan>(currentLoans.values());
 	}
 
 	
-	public int Get_Number_Of_Current_Loans() {
-		return Current_Loans.Size();
+	public int getNumberOfcurrentLoans() {
+		return currentLoans.Size();
 	}
 
 	
@@ -76,9 +76,9 @@ public class Member implements Serializable {
 	
 	
 	
-	public void TaKe_OuT_Loan(Loan loAN) {
-		if (!currentLoans.containsKey(lOaN.GeT_Id())) {
-			currentLoans.put(lOaN.GeT_Id(), loAN);
+	public void TaKe_Out_Loan(Loan loan) {
+		if (!currentLoans.containsKey(loan.getId())) {
+			currentLoans.put(loan.getId(), loan);
 		}
 		else{ 
 			throw new runtimeException("Duplicate loan added to member");
@@ -87,17 +87,17 @@ public class Member implements Serializable {
 	}
 
 	
-	public String GeT_lastName() {
+	public String getlastName() {
 		return lastName;
 	}
 
 	
-	public String GeT_firstName() {
+	public String getfirstName() {
 		return firstName;
 	}
 
 
-	public void Add_Fine(double fine) {
+	public void addFine(double fine) {
 		finesOwing += fine;
 	}
 	
@@ -119,7 +119,7 @@ public class Member implements Serializable {
 
 	public void dischargeLoAn(Loan LoAn) {
 		if (currentLoans.containsKey(LoAn.GeT_Id())){ 
-			Current_Loans.remove(LoAn.GeT_Id());
+			currentLoans.remove(LoAn.GeT_Id());
 		}
 		else{ 
 			throw new runtimeException("No such loan held by member");
