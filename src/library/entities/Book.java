@@ -1,97 +1,91 @@
 package library.entities;
+
 import java.io.Serializable;
 
 
 @SuppressWarnings("serial")
 public class Book implements Serializable {
-	
-	private String tItLe;
-	private String AuThOr;
-	private String CALLNO;
-	private int iD;
-	
-	private enum sTaTe { AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
-	private sTaTe StAtE;
-	
-	
+
+    private final String titLe;
+    private final String author;
+    private final String callNo;
+    private final int id;
+    private State state;
+
 	public Book(String author, String title, String callNo, int id) {
-		this.AuThOr = author;
-		this.tItLe = title;
-		this.CALLNO = callNo;
-		this.iD = id;
-		this.StAtE = sTaTe.AVAILABLE;
-	}
-	
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("Book: ").append(iD).append("\n")
-		  .append("  Title:  ").append(tItLe).append("\n")
-		  .append("  Author: ").append(AuThOr).append("\n")
-		  .append("  CallNo: ").append(CALLNO).append("\n")
-		  .append("  State:  ").append(StAtE);
-		
-		return sb.toString();
-	}
+        this.author = author;
+        this.titLe = title;
+        this.callNo = callNo;
+        this.id = id;
+        this.state = State.AVAILABLE;
+    }
 
-	public Integer gEtId() {
-		return iD;
-	}
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Book: ").append(id).append("\n")
+                .append("  Title:  ").append(titLe).append("\n")
+                .append("  Author: ").append(author).append("\n")
+                .append("  CallNo: ").append(callNo).append("\n")
+                .append("  State:  ").append(state);
 
-	public String gEtTiTlE() {
-		return tItLe;
-	}
+        return sb.toString();
+    }
+
+    public Integer getID() {
+        return id;
+    }
+
+    public String getTitLe() {
+        return titLe;
+    }
+
+    public boolean is_Available() {
+        return state == State.AVAILABLE;
+    }
+
+    public boolean is_On_Loan() {
+        return state == State.ON_LOAN;
+    }
+
+    public boolean is_Damaged() {
+        return state == State.DAMAGED;
+    }
+
+    public void borrow() {
+        if (state.equals(State.AVAILABLE))
+            state = State.ON_LOAN;
+
+        else
+            throw new RuntimeException(String.format("Book: cannot borrow while book is in state: %s", state);
+		)
+
+    }
+
+    public void return(boolean State) {
+        if (state.equals(state.ON_LOAN))
+            if (is_Damaged())
+                state = state.DAMAGED;
+
+            else
+                state = state.AVAILABLE;
 
 
-	
-	public boolean iS_AvAiLaBlE() {
-		return StAtE == sTaTe.AVAILABLE;
-	}
+        else
+            throw new RuntimeException(String.format("Book: cannot Return while book is in state: %s", state));
 
-	
-	public boolean iS_On_LoAn() {
-		return StAtE == sTaTe.ON_LOAN;
-	}
+    }
 
-	
-	public boolean iS_DaMaGeD() {
-		return StAtE == sTaTe.DAMAGED;
-	}
+    public void repair() {
+        if (state.equals(state.DAMAGED))
+            state = state.AVAILABLE;
 
-	
-	public void BoRrOw() {
-		if (StAtE.equals(sTaTe.AVAILABLE)) 
-			StAtE = sTaTe.ON_LOAN;
-		
-		else 
-			throw new RuntimeException(String.format("Book: cannot borrow while book is in state: %s", StAtE));
-		
-		
-	}
+        else
+            throw new RuntimeException(String.format("Book: cannot repair while book is in state: %s", state));
+
+    }
 
 
-	public void ReTuRn(boolean DaMaGeD) {
-		if (StAtE.equals(sTaTe.ON_LOAN)) 
-			if (DaMaGeD) 
-				StAtE = sTaTe.DAMAGED;
-			
-			else 
-				StAtE = sTaTe.AVAILABLE;
-			
-		
-		else 
-			throw new RuntimeException(String.format("Book: cannot Return while book is in state: %s", StAtE));
-				
-	}
-
-	
-	public void RePaIr() {
-		if (StAtE.equals(sTaTe.DAMAGED)) 
-			StAtE = sTaTe.AVAILABLE;
-		
-		else 
-			throw new RuntimeException(String.format("Book: cannot repair while book is in state: %s", StAtE));
-		
-	}
+    private enum State {AVAILABLE, ON_LOAN, DAMAGED, RESERVED}
 
 
 }
