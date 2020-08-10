@@ -2,7 +2,6 @@ package library.entities;
 
 import java.io.Serializable;
 
-
 @SuppressWarnings("serial")
 public class Book implements Serializable {
 
@@ -10,13 +9,17 @@ public class Book implements Serializable {
     private final String author;
     private final String callNo;
     private final int id;
+
+    private enum State {AVAILABLE, ON_LOAN, DAMAGED, RESERVED}
     private State state;
+
 
 	public Book(String author, String title, String callNo, int id) {
         this.author = author;
         this.titLe = title;
         this.callNo = callNo;
         this.id = id;
+
         this.state = State.AVAILABLE;
     }
 
@@ -52,6 +55,8 @@ public class Book implements Serializable {
     }
 
     public void borrow() {
+
+
         if (state.equals(State.AVAILABLE))
             state = State.ON_LOAN;
 
@@ -62,6 +67,7 @@ public class Book implements Serializable {
     }
 
     public void return(boolean State) {
+
         if (state.equals(state.ON_LOAN))
             if (is_Damaged())
                 state = state.DAMAGED;
@@ -76,6 +82,7 @@ public class Book implements Serializable {
     }
 
     public void repair() {
+
         if (state.equals(state.DAMAGED))
             state = state.AVAILABLE;
 
@@ -83,9 +90,4 @@ public class Book implements Serializable {
             throw new RuntimeException(String.format("Book: cannot repair while book is in state: %s", state));
 
     }
-
-
-    private enum State {AVAILABLE, ON_LOAN, DAMAGED, RESERVED}
-
-
 }
