@@ -202,7 +202,7 @@ orignal
 }
 */
 	
-///Edited
+//Edited
 	public void TaKe_OuT_Loan(Loan loAN) {
 		if (!Current_Loans.containsKey(lOaN.GeT_Id())) {
 			Current_Loans.put(lOaN.GeT_Id(), loAN);
