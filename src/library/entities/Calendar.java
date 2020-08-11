@@ -4,8 +4,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Calendar {
 	
-	private static Calendar sElF;
-	private static java.util.Calendar cAlEnDaR;
+	private static Calendar self;
+	private static java.util.Calendar calender;
 	
 	
 	private Calendar() {
@@ -13,23 +13,23 @@ public class Calendar {
 	}
 	
 	public static Calendar gEtInStAnCe() {
-		if (sElF == null) {
-			sElF = new Calendar();
+		if (self == null) {
+			self = new Calendar();
 		}
-		return sElF;
+		return self;
 	}
 	
 	public void incrementDate(int days) {
-		cAlEnDaR.add(java.util.Calendar.DATE, days);		
+		calender.add(java.util.Calendar.DATE, days);
 	}
 	
 	public synchronized void SeT_DaTe(Date DaTe) {
 		try {
-			cAlEnDaR.setTime(DaTe);
-	        cAlEnDaR.set(java.util.Calendar.HOUR_OF_DAY, 0);  
-	        cAlEnDaR.set(java.util.Calendar.MINUTE, 0);  
-	        cAlEnDaR.set(java.util.Calendar.SECOND, 0);  
-	        cAlEnDaR.set(java.util.Calendar.MILLISECOND, 0);
+			calender.setTime(DaTe);
+	        calender.set(java.util.Calendar.HOUR_OF_DAY, 0);
+	        calender.set(java.util.Calendar.MINUTE, 0);
+	        calender.set(java.util.Calendar.SECOND, 0);
+	        calender.set(java.util.Calendar.MILLISECOND, 0);
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -37,11 +37,11 @@ public class Calendar {
 	}
 	public synchronized Date gEt_DaTe() {
 		try {
-	        cAlEnDaR.set(java.util.Calendar.HOUR_OF_DAY, 0);  
-	        cAlEnDaR.set(java.util.Calendar.MINUTE, 0);  
-	        cAlEnDaR.set(java.util.Calendar.SECOND, 0);  
-	        cAlEnDaR.set(java.util.Calendar.MILLISECOND, 0);
-			return cAlEnDaR.getTime();
+	        calender.set(java.util.Calendar.HOUR_OF_DAY, 0);
+	        calender.set(java.util.Calendar.MINUTE, 0);
+	        calender.set(java.util.Calendar.SECOND, 0);
+	        calender.set(java.util.Calendar.MILLISECOND, 0);
+			return calender.getTime();
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -50,9 +50,9 @@ public class Calendar {
 
 	public synchronized Date gEt_DuE_DaTe(int loanPeriod) {
 		Date nOw = gEt_DaTe();
-		cAlEnDaR.add(java.util.Calendar.DATE, loanPeriod);
-		Date dUeDaTe = cAlEnDaR.getTime();
-		cAlEnDaR.setTime(nOw);
+		calender.add(java.util.Calendar.DATE, loanPeriod);
+		Date dUeDaTe = calender.getTime();
+		calender.setTime(nOw);
 		return dUeDaTe;
 	}
 	
