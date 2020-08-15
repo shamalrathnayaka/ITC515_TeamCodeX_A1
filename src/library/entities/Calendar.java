@@ -23,9 +23,9 @@ public class Calendar {
 		calender.add(java.util.Calendar.DATE, days);
 	}
 	
-	public synchronized void setDate(Date Date) {
+	public synchronized void setDate(Date date) {
 		try {
-			calender.setTime(Date);
+			calender.setTime(date);
 	        calender.set(java.util.Calendar.HOUR_OF_DAY, 0);
 	        calender.set(java.util.Calendar.MINUTE, 0);
 	        calender.set(java.util.Calendar.SECOND, 0);
@@ -35,7 +35,7 @@ public class Calendar {
 			throw new RuntimeException(e);
 		}	
 	}
-	public synchronized Date gEt_DaTe() {
+	public synchronized Date getDate() {
 		try {
 	        calender.set(java.util.Calendar.HOUR_OF_DAY, 0);
 	        calender.set(java.util.Calendar.MINUTE, 0);
@@ -48,19 +48,19 @@ public class Calendar {
 		}	
 	}
 
-	public synchronized Date gEt_DuE_DaTe(int loanPeriod) {
-		Date nOw = gEt_DaTe();
+	public synchronized Date getDueDate(int loanPeriod) {
+		Date now = getDate();
 		calender.add(java.util.Calendar.DATE, loanPeriod);
-		Date dUeDaTe = calender.getTime();
-		calender.setTime(nOw);
-		return dUeDaTe;
+		Date dueDate = calender.getTime();
+		calender.setTime(now);
+		return dueDate;
 	}
 	
-	public synchronized long GeT_DaYs_DiFfErEnCe(Date targetDate) {
+	public synchronized long getDaysDifference(Date targetDate) {
 		
-		long Diff_Millis = gEt_DaTe().getTime() - targetDate.getTime();
-	    long Diff_Days = TimeUnit.DAYS.convert(Diff_Millis, TimeUnit.MILLISECONDS);
-	    return Diff_Days;
+		long diffMillis = getDate().getTime() - targetDate.getTime();
+	    long diffDays = TimeUnit.DAYS.convert(diffMillis, TimeUnit.MILLISECONDS);
+	    return diffDays;
 	}
 
 }
