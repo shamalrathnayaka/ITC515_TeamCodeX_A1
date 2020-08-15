@@ -8,11 +8,11 @@ public class Loan implements Serializable {
 	
 	public static enum lOaN_sTaTe { CURRENT, OVER_DUE, DISCHARGED };
 	
-	private int LoAn_Id;
-	private Book BoOk;
-	private Member MeMbEr;
-	private Date DaTe;
-	private lOaN_sTaTe StAtE;
+	private int loan_id;
+	private Book book;
+	private Member member;
+	private Date date;
+	private loan_state StAtE;
 
 	
 	public Loan(int loanId, Book bOoK, Member mEmBeR, Date DuE_dAtE) {

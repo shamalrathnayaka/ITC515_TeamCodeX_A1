@@ -9,10 +9,10 @@ public class Calendar {
 	
 	
 	private Calendar() {
-		cAlEnDaR = java.util.Calendar.getInstance();
+		calender = java.util.Calendar.getInstance();
 	}
 	
-	public static Calendar gEtInStAnCe() {
+	public static Calendar getInstance() {
 		if (self == null) {
 			self = new Calendar();
 		}
@@ -23,9 +23,9 @@ public class Calendar {
 		calender.add(java.util.Calendar.DATE, days);
 	}
 	
-	public synchronized void SeT_DaTe(Date DaTe) {
+	public synchronized void setDate(Date Date) {
 		try {
-			calender.setTime(DaTe);
+			calender.setTime(Date);
 	        calender.set(java.util.Calendar.HOUR_OF_DAY, 0);
 	        calender.set(java.util.Calendar.MINUTE, 0);
 	        calender.set(java.util.Calendar.SECOND, 0);
