@@ -1,3 +1,10 @@
+/**
+ *
+ * @Author: Sanka Gunawardane
+ * @SID: 11724349
+ * @Subject: ITC515 - Professional Programming Practice
+ * @Team: TeamCodeX
+ */
 package library.entities;
 import java.io.Serializable;
 
