@@ -55,15 +55,15 @@ public class Main {
 	public static void main(String[] args) {		
 		try {			
 			IN = new Scanner(System.in);
-			LIB = Library.getInstance();
+			LIB = Library.GeTiNsTaNcE();
 			CAL = Calendar.gEtInStAnCe();
 			SDF = new SimpleDateFormat("dd/MM/yyyy");
 	
-			for (Member m : LIB.listMembers()) {
+			for (Member m : LIB.lIsT_MeMbErS()) {
 				output(m);
 			}
 			output(" ");
-			for (Book b : LIB.listBooks()) {
+			for (Book b : LIB.lIsT_BoOkS()) {
 				output(b);
 			}
 						
@@ -127,7 +127,7 @@ public class Main {
 					break;
 				}
 				
-				Library.save();
+				Library.SaVe();
 			}			
 		} catch (RuntimeException e) {
 			output(e);
@@ -135,15 +135,14 @@ public class Main {
 		output("\nEnded\n");
 	}	
 
-	
-	private static void PAY_FINES() {
+		private static void PAY_FINES() {
 		new PayFineUI(new pAY_fINE_cONTROL()).RuN();		
 	}
 
 
 	private static void LIST_CURRENT_LOANS() {
 		output("");
-		for (Loan loan : LIB.listCurrentLoans()) {
+		for (Loan loan : LIB.lISt_CuRrEnT_LoAnS()) {
 			output(loan + "\n");
 		}		
 	}
@@ -152,7 +151,7 @@ public class Main {
 
 	private static void LIST_BOOKS() {
 		output("");
-		for (Book book : LIB.listBooks()) {
+		for (Book book : LIB.lIsT_BoOkS()) {
 			output(book + "\n");
 		}		
 	}
@@ -161,7 +160,7 @@ public class Main {
 
 	private static void LIST_MEMBERS() {
 		output("");
-		for (Member member : LIB.listMembers()) {
+		for (Member member : LIB.lIsT_MeMbErS()) {
 			output(member + "\n");
 		}		
 	}
@@ -187,7 +186,7 @@ public class Main {
 		try {
 			int days = Integer.valueOf(input("Enter number of days: ")).intValue();
 			CAL.incrementDate(days);
-			LIB.checkCurrentLoans();
+			LIB.cHeCk_CuRrEnT_LoAnS();
 			output(SDF.format(CAL.gEt_DaTe()));
 			
 		} catch (NumberFormatException e) {
@@ -201,7 +200,7 @@ public class Main {
 		String AuThOr = input("Enter author: ");
 		String TiTlE  = input("Enter title: ");
 		String CaLl_NuMbEr = input("Enter call number: ");
-		Book BoOk = LIB.addBook(AuThOr, TiTlE, CaLl_NuMbEr);
+		Book BoOk = LIB.aDd_BoOk(AuThOr, TiTlE, CaLl_NuMbEr);
 		output("\n" + BoOk + "\n");
 		
 	}
@@ -213,7 +212,7 @@ public class Main {
 			String FiRsT_NaMe  = input("Enter first name: ");
 			String EmAiL_AdDrEsS = input("Enter email address: ");
 			int PhOnE_NuMbEr = Integer.valueOf(input("Enter phone number: ")).intValue();
-			Member MeMbEr = LIB.addMember(LaSt_NaMe, FiRsT_NaMe, EmAiL_AdDrEsS, PhOnE_NuMbEr);
+			Member MeMbEr = LIB.aDd_MeMbEr(LaSt_NaMe, FiRsT_NaMe, EmAiL_AdDrEsS, PhOnE_NuMbEr);
 			output("\n" + MeMbEr + "\n");
 			
 		} catch (NumberFormatException e) {
