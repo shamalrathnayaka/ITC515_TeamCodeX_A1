@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class Book implements Serializable {
-	
+    	
 	private String title;
 	private String author;
 	private String callNo;
@@ -15,7 +15,7 @@ public class Book implements Serializable {
 	
 	
 	public Book(String author, String title, String callNo, int id) {
-		this.author = author;
+	  	this.author = author;
 		this.title = title;
 		this.callNo = callNo;
 		this.id = id;
@@ -23,7 +23,7 @@ public class Book implements Serializable {
 	}
 	
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
+	   	StringBuilder sb = new StringBuilder();
 		sb.append("Book: ").append(id).append("\n")
 		  .append("  Title:  ").append(title).append("\n")
 		  .append("  Author: ").append(author).append("\n")
@@ -79,7 +79,8 @@ public class Book implements Serializable {
 			}
 		}
 		else {
-			throw new RuntimeException(String.format("Book: cannot Return while book is in state: %s", state));
+			String format = String.format("Book: cannot Return while book is in state: %s", state);
+			throw new RuntimeException(format);
 		}	
 	}
 
@@ -89,7 +90,8 @@ public class Book implements Serializable {
 			state = State.AVAILABLE;
 		}
 		else {
-			throw new RuntimeException(String.format("Book: cannot repair while book is in state: %s", state));
+			String format = String.format("Book: cannot repair while book is in state: %s", state);
+			throw new RuntimeException(format);
 		}
 	}
 
