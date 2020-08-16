@@ -61,7 +61,7 @@ public class Library implements Serializable {
 		if (library == null) {
 			Path path = Paths.get(LIBRARY_FILE);			
 			if (Files.exists(path)) {	
-				try (ObjectInputStream libraryFile = new ObjectInputStream(new FileInputStream(LIBRARY_FILE));) {
+				try (ObjectInputStream libraryFile = new ObjectInputStream(new FileInputStream(LIBRARY_FILE))) {
 			    
 					library = (Library) libraryFile.readObject();
 					Calendar.getInstance().setDate(library.loanDate);
@@ -82,7 +82,7 @@ public class Library implements Serializable {
 	public static synchronized void save() {
 		if (library != null) {
 			library.loanDate = Calendar.getInstance().getDate();
-			try (ObjectOutputStream libraryFile = new ObjectOutputStream(new FileOutputStream(LIBRARY_FILE));) {
+			try (ObjectOutputStream libraryFile = new ObjectOutputStream(new FileOutputStream(LIBRARY_FILE))) {
 				libraryFile.writeObject(library);
 				libraryFile.flush();
 				libraryFile.close();	
@@ -149,15 +149,17 @@ public class Library implements Serializable {
 
 	
 	public Member getMember(int memberId) {
-		if (members.containsKey(memberId))
+		if (members.containsKey(memberId)) {
 			return members.get(memberId);
+		}
 		return null;
 	}
 
 	
 	public Book getBook(int bookId) {
-		if (catalog.containsKey(bookId))
+		if (catalog.containsKey(bookId)) {
 			return catalog.get(bookId);
+		}
 		return null;
 	}
 
