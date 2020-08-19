@@ -12,7 +12,7 @@ public class Loan implements Serializable {
 	private Book book;
 	private Member member;
 	private Date date;
-	private loan_state state;
+	private LoanState state;
 
 	
 	public Loan(int loanId, Book booK, Member member, Date dueDate) {
@@ -26,7 +26,7 @@ public class Loan implements Serializable {
 	
 	public void checkOverDue() {
 		if (state == loan_state.CURRENT &&
-			Calendar.getInstance().getDaTe().after(DaTe))
+			Calendar.getInstance().getDaTe().after(Date))
 			this.state = lOaNLoanState_sTaTe.OVER_DUE;
 		
 	}
