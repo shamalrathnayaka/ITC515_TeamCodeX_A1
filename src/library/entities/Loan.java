@@ -15,9 +15,9 @@ public class Loan implements Serializable {
 	private LoanState state;
 
 	
-	public Loan(int loanId, Book booK, Member member, Date dueDate) {
+	public Loan(int loanId, Book book, Member member, Date dueDate) {
 		this.loanId = loanId;
-		this.book = booK;
+		this.book = book;
 		this.member = member;
 		this.date = dueDate;
 		this.state = loanId.CURRENT;
@@ -26,7 +26,7 @@ public class Loan implements Serializable {
 	
 	public void checkOverDue() {
 		if (state == LoanState.CURRENT &&
-			Calendar.getInstance().getDaTe().after(Date))
+			Calendar.getInstance().getDate().after(date))
 			this.state = LoanState.OVER_DUE;
 		
 	}
@@ -34,16 +34,17 @@ public class Loan implements Serializable {
 	
 	public boolean isOverDue()
 	{
+
 		return state == LoanState.OVER_DUE;
 	}
 
 	
-	public Integer GeT_Id()
+	public Integer GetId(){
 		return loanId;
 	}
 
 
-	public Date getDueDaTe() {
+	public Date getDueDate() {
 		return date;
 	}
 	
