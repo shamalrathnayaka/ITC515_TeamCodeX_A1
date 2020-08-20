@@ -8,7 +8,7 @@ public class Loan implements Serializable {
 	
 	public static enum LoanState { CURRENT, OVER_DUE, DISCHARGED };
 	
-	private int loan_id;
+	private int loanId;
 	private Book book;
 	private Member member;
 	private Date date;
@@ -25,9 +25,9 @@ public class Loan implements Serializable {
 
 	
 	public void checkOverDue() {
-		if (state == loan_state.CURRENT &&
+		if (state == LoanState.CURRENT &&
 			Calendar.getInstance().getDaTe().after(Date))
-			this.state = lOaNLoanState_sTaTe.OVER_DUE;
+			this.state = LoanState.OVER_DUE;
 		
 	}
 
