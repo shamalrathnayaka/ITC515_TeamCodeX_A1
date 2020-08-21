@@ -8,16 +8,16 @@ public class Loan implements Serializable {
 	
 	public static enum LoanState { CURRENT, OVER_DUE, DISCHARGED };
 	
-	private int loan_id;
+	private int loanId;
 	private Book book;
 	private Member member;
 	private Date date;
-	private loan_state state;
+	private LoanState state;
 
 	
-	public Loan(int loanId, Book booK, Member member, Date dueDate) {
+	public Loan(int loanId, Book book, Member member, Date dueDate) {
 		this.loanId = loanId;
-		this.book = booK;
+		this.book = book;
 		this.member = member;
 		this.date = dueDate;
 		this.state = loanId.CURRENT;
@@ -25,25 +25,26 @@ public class Loan implements Serializable {
 
 	
 	public void checkOverDue() {
-		if (state == loan_state.CURRENT &&
-			Calendar.getInstance().getDaTe().after(DaTe))
-			this.state = lOaNLoanState_sTaTe.OVER_DUE;
+		if (state == LoanState.CURRENT &&
+			Calendar.getInstance().getDate().after(date))
+			this.state = LoanState.OVER_DUE;
 		
 	}
 
 	
 	public boolean isOverDue()
 	{
+
 		return state == LoanState.OVER_DUE;
 	}
 
 	
-	public Integer GeT_Id()
+	public Integer GetId(){
 		return loanId;
 	}
 
 
-	public Date getDueDaTe() {
+	public Date getDueDate() {
 		return date;
 	}
 	
