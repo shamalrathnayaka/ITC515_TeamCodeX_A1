@@ -20,7 +20,7 @@ public class Loan implements Serializable {
 		this.book = book;
 		this.member = member;
 		this.date = dueDate;
-		this.state = loanId.CURRENT;
+		this.state = LoanState.CURRENT;
 	}
 
 	
@@ -54,10 +54,10 @@ public class Loan implements Serializable {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("Loan:  ").append(loanId).append("\n")
-		  .append("  Borrower ").append(member.getId()).append(" : ")
-		  .append(member.getLastName()).append(", ").append(member.getFirstName()).append("\n")
-		  .append("  Book ").append(Book.getId()).append(" : " )
-		  .append(book.getTitle()).append("\n")
+		  .append("  Borrower ").append(member.getID()).append(" : ")
+		  .append(member.getlastName()).append(", ").append(member.getfirstName()).append("\n")
+		  .append("  Book ").append(book.getID()).append(" : " )
+		  .append(book.getTitLe()).append("\n")
 		  .append("  DueDate: ").append(sdf.format(date)).append("\n")
 		  .append("  State: ").append(state);
 		return sb.toString();
