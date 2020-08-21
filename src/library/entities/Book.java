@@ -5,10 +5,10 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class Book implements Serializable {
 
-    private final String titLe;
-    private final String author;
-    private final String callNo;
-    private final int id;
+    private String titLe;
+    private String author;
+    private String callNo;
+    private int id;
 
     private enum State {AVAILABLE, ON_LOAN, DAMAGED, RESERVED}
     private State state;
@@ -61,12 +61,11 @@ public class Book implements Serializable {
             state = State.ON_LOAN;
 
         else
-            throw new RuntimeException(String.format("Book: cannot borrow while book is in state: %s", state);
-		)
+            throw new RuntimeException(String.format("Book: cannot borrow while book is in state: %s", state));
 
     }
 
-    public void return(boolean State) {
+    public void isReturned(boolean State) {
 
         if (state.equals(state.ON_LOAN))
             if (is_Damaged())

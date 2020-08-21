@@ -75,7 +75,7 @@ public class BorrowBookControl {
 			uI.DiSpLaY("Invalid bookId");
 			return;
 		}
-		if (!bOoK.iS_AvAiLaBlE()) {
+		if (!bOoK.is_Available()) {
 			uI.DiSpLaY("Book cannot be borrowed");
 			return;
 		}
