@@ -1,9 +1,16 @@
+/**
+ *
+ * @Author: Shamal Rathnayaka
+ * @SID: 11687499
+ * @Subject: ITC515 - Professional Programming Practice
+ * @Team: TeamCodeX
+ */
 package library;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 import library.borrowbook.BorrowBookUI;
-import library.borrowbook.bORROW_bOOK_cONTROL;
+import library.borrowbook.BorrowBookControl;
 import library.entities.Book;
 import library.entities.Calendar;
 import library.entities.Library;
@@ -169,7 +176,7 @@ public class Main {
 
 
 	private static void BORROW_BOOK() {
-		new BorrowBookUI(new bORROW_bOOK_cONTROL()).RuN();		
+		new BorrowBookUI(new BorrowBookControl()).RuN();
 	}
 
 
