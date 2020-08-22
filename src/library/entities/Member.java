@@ -8,8 +8,8 @@
 
 package library.entities;
 import java.io.Serializable;
-import java.util.arrayList;
-import java.util.hashMap;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,17 +33,17 @@ public class Member implements Serializable {
 		this.phoneNumber = phoneNumber;
 		this.memberId = memberId;
 		
-		this.currentLoans = new hashMap<>();
+		this.currentLoans = new HashMap<>();
 
 	}
 
 	
 	
 	public String toString() {
-		stringBuilder sb = new stringBuilder();
+		StringBuilder sb = new StringBuilder();
 		sb.append("Member:  ").append(memberId).append("\n")
 		  .append("  Name:  ").append(lastName).append(", ").append(firstName).append("\n")
-		  .append("  Email: ").append(emaiLAddress).append("\n")
+		  .append("  Email: ").append(emailAddress).append("\n")
 		  .append("  Phone: ").append(phoneNumber)
 		  .append("\n")
 		  .append(String.format("  Fines Owed :  $%.2f", finesOwing))
@@ -66,7 +66,7 @@ public class Member implements Serializable {
 
 	
 	public int getNumberOfcurrentLoans() {
-		return currentLoans.Size();
+		return currentLoans.size();
 	}
 
 	
@@ -77,11 +77,11 @@ public class Member implements Serializable {
 	
 	
 	public void TaKe_Out_Loan(Loan loan) {
-		if (!currentLoans.containsKey(loan.getId())) {
-			currentLoans.put(loan.getId(), loan);
+		if (!currentLoans.containsKey(loan.GetId())) {
+			currentLoans.put(loan.GetId(), loan);
 		}
 		else{ 
-			throw new runtimeException("Duplicate loan added to member");
+			throw new RuntimeException("Duplicate loan added to member");
 		}
 				
 	}
@@ -103,7 +103,7 @@ public class Member implements Serializable {
 	
 	public double payFine(double Amount) {
 		if (Amount < 0) {
-			throw new runtimeException("Member.payFine: amount must be positive");
+			throw new RuntimeException("Member.payFine: amount must be positive");
 		}
 		double change = 0;
 		if (Amount > finesOwing) {
@@ -118,11 +118,11 @@ public class Member implements Serializable {
 
 
 	public void dischargeLoAn(Loan LoAn) {
-		if (currentLoans.containsKey(LoAn.GeT_Id())){ 
-			currentLoans.remove(LoAn.GeT_Id());
+		if (currentLoans.containsKey(LoAn.GetId())){
+			currentLoans.remove(LoAn.GetId());
 		}
 		else{ 
-			throw new runtimeException("No such loan held by member");
+			throw new RuntimeException("No such loan held by member");
 		}	
 	}
 

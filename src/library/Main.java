@@ -1,9 +1,16 @@
+/**
+ *
+ * @Author: Shamal Rathnayaka
+ * @SID: 11687499
+ * @Subject: ITC515 - Professional Programming Practice
+ * @Team: TeamCodeX
+ */
 package library;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 import library.borrowbook.BorrowBookUI;
-import library.borrowbook.bORROW_bOOK_cONTROL;
+import library.borrowbook.BorrowBookControl;
 import library.entities.Book;
 import library.entities.Calendar;
 import library.entities.Library;
@@ -12,7 +19,7 @@ import library.entities.Member;
 import library.fixbook.FixBookUI;
 import library.fixbook.fIX_bOOK_cONTROL;
 import library.payfine.PayFineUI;
-import library.payfine.pAY_fINE_cONTROL;
+import library.payfine.PayFineControl;
 import library.returnBook.ReturnBookUI;
 import library.returnBook.rETURN_bOOK_cONTROL;
 
@@ -56,7 +63,7 @@ public class Main {
 		try {			
 			IN = new Scanner(System.in);
 			LIB = Library.getInstance();
-			CAL = Calendar.gEtInStAnCe();
+			CAL = Calendar.getInstance();
 			SDF = new SimpleDateFormat("dd/MM/yyyy");
 	
 			for (Member m : LIB.listMembers()) {
@@ -73,7 +80,7 @@ public class Main {
 			
 			while (!e) {
 				
-				output("\n" + SDF.format(CAL.gEt_DaTe()));
+				output("\n" + SDF.format(CAL.getDate()));
 				String c = input(MENU);
 				
 				switch (c.toUpperCase()) {
@@ -137,7 +144,7 @@ public class Main {
 
 	
 	private static void PAY_FINES() {
-		new PayFineUI(new pAY_fINE_cONTROL()).RuN();		
+		new PayFineUI(new PayFineControl()).RuN();
 	}
 
 
@@ -169,7 +176,7 @@ public class Main {
 
 
 	private static void BORROW_BOOK() {
-		new BorrowBookUI(new bORROW_bOOK_cONTROL()).RuN();		
+		new BorrowBookUI(new BorrowBookControl()).RuN();
 	}
 
 
@@ -188,7 +195,7 @@ public class Main {
 			int days = Integer.valueOf(input("Enter number of days: ")).intValue();
 			CAL.incrementDate(days);
 			LIB.checkCurrentLoans();
-			output(SDF.format(CAL.gEt_DaTe()));
+			output(SDF.format(CAL.getDate()));
 			
 		} catch (NumberFormatException e) {
 			 output("\nInvalid number of days\n");
