@@ -34,9 +34,9 @@ public class Main {
 	
 	
 	private static String getMenu() {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder stringBuilder = new StringBuilder();
 		
-		sb.append("\nLibrary Main Menu\n\n")
+		stringBuilder.append("\nLibrary Main Menu\n\n")
 		  .append("  M  : add member\n")
 		  .append("  LM : list members\n")
 		  .append("\n")
@@ -55,7 +55,7 @@ public class Main {
 		  .append("\n")
 		  .append("Choice : ");
 		  
-		return sb.toString();
+		return stringBuilder.toString();
 	}
 
 
@@ -66,12 +66,12 @@ public class Main {
 			calendar = Calendar.getInstance();
 			simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 	
-			for (Member m : library.listMembers()) {
-				output(m);
+			for (Member member : library.listMembers()) {
+				output(member);
 			}
 			output(" ");
-			for (Book b : library.listBooks()) {
-				output(b);
+			for (Book book : library.listBooks()) {
+				output(book);
 			}
 						
 			menu = getMenu();
@@ -136,8 +136,8 @@ public class Main {
 				
 				Library.save();
 			}			
-		} catch (RuntimeException e) {
-			output(e);
+		} catch (RuntimeException exception) {
+			output(exception);
 		}		
 		output("\nEnded\n");
 	}	
@@ -197,7 +197,7 @@ public class Main {
 			library.checkCurrentLoans();
 			output(simpleDateFormat.format(calendar.getDate()));
 			
-		} catch (NumberFormatException e) {
+		} catch (NumberFormatException exception) {
 			 output("\nInvalid number of days\n");
 		}
 	}
@@ -205,25 +205,25 @@ public class Main {
 
 	private static void addBook() {
 		
-		String AuThOr = input("Enter author: ");
-		String TiTlE  = input("Enter title: ");
-		String CaLl_NuMbEr = input("Enter call number: ");
-		Book BoOk = library.addBook(AuThOr, TiTlE, CaLl_NuMbEr);
-		output("\n" + BoOk + "\n");
+		String author = input("Enter author: ");
+		String title  = input("Enter title: ");
+		String callNumber = input("Enter call number: ");
+		Book book = library.addBook(author, title, callNumber);
+		output("\n" + book + "\n");
 		
 	}
 
 	
 	private static void addMember() {
 		try {
-			String LaSt_NaMe = input("Enter last name: ");
-			String FiRsT_NaMe  = input("Enter first name: ");
-			String EmAiL_AdDrEsS = input("Enter email address: ");
-			int PhOnE_NuMbEr = Integer.valueOf(input("Enter phone number: ")).intValue();
-			Member MeMbEr = library.addMember(LaSt_NaMe, FiRsT_NaMe, EmAiL_AdDrEsS, PhOnE_NuMbEr);
-			output("\n" + MeMbEr + "\n");
+			String lastName = input("Enter last name: ");
+			String firstName  = input("Enter first name: ");
+			String emailAddress = input("Enter email address: ");
+			int phoneNumber = Integer.valueOf(input("Enter phone number: ")).intValue();
+			Member member = library.addMember(lastName, firstName, emailAddress, phoneNumber);
+			output("\n" + member + "\n");
 			
-		} catch (NumberFormatException e) {
+		} catch (NumberFormatException exception) {
 			 output("\nInvalid phone number\n");
 		}
 		
