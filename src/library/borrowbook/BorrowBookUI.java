@@ -26,19 +26,19 @@ public class BorrowBookUI {
 	}
 
 	
-	private String input(String PrOmPt) {
-		System.out.print(PrOmPt);
+	private String input(String prompt) {
+		System.out.print(prompt);
 		return input.nextLine();
 	}	
 		
 		
-	private void output(Object ObJeCt) {
-		System.out.println(ObJeCt);
+	private void output(Object object) {
+		System.out.println(object);
 	}
 	
 			
-	public void setState(UiState StAtE) {
-		this.state = StAtE;
+	public void setState(UiState state) {
+		this.state = state;
 	}
 
 	
@@ -55,16 +55,16 @@ public class BorrowBookUI {
 
 				
 			case READY:
-				String MEM_STR = input("Swipe member card (press <enter> to cancel): ");
-				if (MEM_STR.length() == 0) {
+				String memStr = input("Swipe member card (press <enter> to cancel): ");
+				if (memStr.length() == 0) {
 					control.cancel();
 					break;
 				}
 				try {
-					int MeMbEr_Id = Integer.valueOf(MEM_STR).intValue();
-					control.swiped(MeMbEr_Id);
+					int memberId = Integer.valueOf(memStr).intValue();
+					control.swiped(memberId);
 				}
-				catch (NumberFormatException e) {
+				catch (NumberFormatException exception) {
 					output("Invalid Member Id");
 				}
 				break;
@@ -77,24 +77,24 @@ public class BorrowBookUI {
 			
 				
 			case SCANNING:
-				String BoOk_StRiNg_InPuT = input("Scan Book (<enter> completes): ");
-				if (BoOk_StRiNg_InPuT.length() == 0) {
+				String bookStringInput = input("Scan Book (<enter> completes): ");
+				if (bookStringInput.length() == 0) {
 					control.complete();
 					break;
 				}
 				try {
-					int BiD = Integer.valueOf(BoOk_StRiNg_InPuT).intValue();
-					control.scanned(BiD);
+					int bid = Integer.valueOf(bookStringInput).intValue();
+					control.scanned(bid);
 					
-				} catch (NumberFormatException e) {
+				} catch (NumberFormatException exception) {
 					output("Invalid Book Id");
 				} 
 				break;
 					
 				
 			case FINALISING:
-				String AnS = input("Commit loans? (Y/N): ");
-				if (AnS.toUpperCase().equals("N")) {
+				String ans = input("Commit loans? (Y/N): ");
+				if (ans.toUpperCase().equals("N")) {
 					control.cancel();
 					
 				} else {
