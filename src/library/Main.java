@@ -33,7 +33,7 @@ public class Main {
 	private static SimpleDateFormat simpleDateFormat;
 	
 	
-	private static String Get_menu() {
+	private static String getMenu() {
 		StringBuilder sb = new StringBuilder();
 		
 		sb.append("\nLibrary Main Menu\n\n")
@@ -74,7 +74,7 @@ public class Main {
 				output(b);
 			}
 						
-			menu = Get_menu();
+			menu = getMenu();
 			
 			boolean e = false;
 			
@@ -86,43 +86,43 @@ public class Main {
 				switch (c.toUpperCase()) {
 				
 				case "M": 
-					ADD_MEMBER();
+					addMember();
 					break;
 					
 				case "LM": 
-					LIST_MEMBERS();
+					listMembers();
 					break;
 					
 				case "B": 
-					ADD_BOOK();
+					addBook();
 					break;
 					
 				case "LB": 
-					LIST_BOOKS();
+					listBooks();
 					break;
 					
 				case "FB": 
-					FIX_BOOKS();
+					fixBooks();
 					break;
 					
 				case "L": 
-					BORROW_BOOK();
+					borrowBook();
 					break;
 					
 				case "R": 
-					RETURN_BOOK();
+					returnBook();
 					break;
 					
 				case "LL": 
-					LIST_CURRENT_LOANS();
+					listCurrentLoans();
 					break;
 					
 				case "P": 
-					PAY_FINES();
+					payFines();
 					break;
 					
 				case "T": 
-					INCREMENT_DATE();
+					incrementDate();
 					break;
 					
 				case "Q": 
@@ -143,12 +143,12 @@ public class Main {
 	}	
 
 	
-	private static void PAY_FINES() {
+	private static void payFines() {
 		new PayFineUI(new PayFineControl()).RuN();
 	}
 
 
-	private static void LIST_CURRENT_LOANS() {
+	private static void listCurrentLoans() {
 		output("");
 		for (Loan loan : library.listCurrentLoans()) {
 			output(loan + "\n");
@@ -157,7 +157,7 @@ public class Main {
 
 
 
-	private static void LIST_BOOKS() {
+	private static void listBooks() {
 		output("");
 		for (Book book : library.listBooks()) {
 			output(book + "\n");
@@ -166,7 +166,7 @@ public class Main {
 
 
 
-	private static void LIST_MEMBERS() {
+	private static void listMembers() {
 		output("");
 		for (Member member : library.listMembers()) {
 			output(member + "\n");
@@ -175,22 +175,22 @@ public class Main {
 
 
 
-	private static void BORROW_BOOK() {
+	private static void borrowBook() {
 		new BorrowBookUI(new BorrowBookControl()).run();
 	}
 
 
-	private static void RETURN_BOOK() {
+	private static void returnBook() {
 		new ReturnBookUI(new rETURN_bOOK_cONTROL()).RuN();		
 	}
 
 
-	private static void FIX_BOOKS() {
+	private static void fixBooks() {
 		new FixBookUI(new fIX_bOOK_cONTROL()).RuN();		
 	}
 
 
-	private static void INCREMENT_DATE() {
+	private static void incrementDate() {
 		try {
 			int days = Integer.valueOf(input("Enter number of days: ")).intValue();
 			calendar.incrementDate(days);
@@ -203,7 +203,7 @@ public class Main {
 	}
 
 
-	private static void ADD_BOOK() {
+	private static void addBook() {
 		
 		String AuThOr = input("Enter author: ");
 		String TiTlE  = input("Enter title: ");
@@ -214,7 +214,7 @@ public class Main {
 	}
 
 	
-	private static void ADD_MEMBER() {
+	private static void addMember() {
 		try {
 			String LaSt_NaMe = input("Enter last name: ");
 			String FiRsT_NaMe  = input("Enter first name: ");
