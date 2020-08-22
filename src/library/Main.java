@@ -6,6 +6,7 @@
  * @Team: TeamCodeX
  */
 package library;
+
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
@@ -23,7 +24,6 @@ import library.payfine.PayFineControl;
 import library.returnBook.ReturnBookUI;
 import library.returnBook.rETURN_bOOK_cONTROL;
 
-
 public class Main {
 	
 	private static Scanner in;
@@ -31,8 +31,7 @@ public class Main {
 	private static String menu;
 	private static Calendar calendar;
 	private static SimpleDateFormat simpleDateFormat;
-	
-	
+
 	private static String getMenu() {
 		StringBuilder stringBuilder = new StringBuilder();
 		
@@ -57,7 +56,6 @@ public class Main {
 		  
 		return stringBuilder.toString();
 	}
-
 
 	public static void main(String[] args) {		
 		try {			
@@ -142,11 +140,9 @@ public class Main {
 		output("\nEnded\n");
 	}	
 
-	
 	private static void payFines() {
 		new PayFineUI(new PayFineControl()).RuN();
 	}
-
 
 	private static void listCurrentLoans() {
 		output("");
@@ -155,16 +151,12 @@ public class Main {
 		}		
 	}
 
-
-
 	private static void listBooks() {
 		output("");
 		for (Book book : library.listBooks()) {
 			output(book + "\n");
 		}		
 	}
-
-
 
 	private static void listMembers() {
 		output("");
@@ -173,22 +165,17 @@ public class Main {
 		}		
 	}
 
-
-
 	private static void borrowBook() {
 		new BorrowBookUI(new BorrowBookControl()).run();
 	}
-
 
 	private static void returnBook() {
 		new ReturnBookUI(new rETURN_bOOK_cONTROL()).RuN();		
 	}
 
-
 	private static void fixBooks() {
 		new FixBookUI(new fIX_bOOK_cONTROL()).RuN();		
 	}
-
 
 	private static void incrementDate() {
 		try {
@@ -202,7 +189,6 @@ public class Main {
 		}
 	}
 
-
 	private static void addBook() {
 		
 		String author = input("Enter author: ");
@@ -213,7 +199,6 @@ public class Main {
 		
 	}
 
-	
 	private static void addMember() {
 		try {
 			String lastName = input("Enter last name: ");
@@ -226,20 +211,14 @@ public class Main {
 		} catch (NumberFormatException exception) {
 			 output("\nInvalid phone number\n");
 		}
-		
 	}
-
 
 	private static String input(String prompt) {
 		System.out.print(prompt);
 		return in.nextLine();
 	}
 	
-	
-	
 	private static void output(Object object) {
 		System.out.println(object);
 	}
-
-	
 }
