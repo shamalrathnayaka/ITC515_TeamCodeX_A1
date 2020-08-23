@@ -1,9 +1,16 @@
+/**
+ *
+ * @Author: Shamal Rathnayaka
+ * @SID: 11687499
+ * @Subject: ITC515 - Professional Programming Practice
+ * @Team: TeamCodeX
+ */
 package library;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 import library.borrowbook.BorrowBookUI;
-import library.borrowbook.bORROW_bOOK_cONTROL;
+import library.borrowbook.BorrowBookControl;
 import library.entities.Book;
 import library.entities.Calendar;
 import library.entities.Library;
@@ -12,7 +19,7 @@ import library.entities.Member;
 import library.fixbook.FixBookUI;
 import library.fixbook.fIX_bOOK_cONTROL;
 import library.payfine.PayFineUI;
-import library.payfine.pAY_fINE_cONTROL;
+import library.payfine.PayFineControl;
 import library.returnBook.ReturnBookUI;
 import library.returnBook.rETURN_bOOK_cONTROL;
 
@@ -55,15 +62,15 @@ public class Main {
 	public static void main(String[] args) {		
 		try {			
 			IN = new Scanner(System.in);
-			LIB = Library.GeTiNsTaNcE();
-			CAL = Calendar.gEtInStAnCe();
+			LIB = Library.getInstance();
+			CAL = Calendar.getInstance();
 			SDF = new SimpleDateFormat("dd/MM/yyyy");
 	
-			for (Member m : LIB.lIsT_MeMbErS()) {
+			for (Member m : LIB.listMembers()) {
 				output(m);
 			}
 			output(" ");
-			for (Book b : LIB.lIsT_BoOkS()) {
+			for (Book b : LIB.listBooks()) {
 				output(b);
 			}
 						
@@ -73,7 +80,7 @@ public class Main {
 			
 			while (!e) {
 				
-				output("\n" + SDF.format(CAL.gEt_DaTe()));
+				output("\n" + SDF.format(CAL.getDate()));
 				String c = input(MENU);
 				
 				switch (c.toUpperCase()) {
@@ -127,7 +134,7 @@ public class Main {
 					break;
 				}
 				
-				Library.SaVe();
+				Library.save();
 			}			
 		} catch (RuntimeException e) {
 			output(e);
@@ -135,14 +142,15 @@ public class Main {
 		output("\nEnded\n");
 	}	
 
-		private static void PAY_FINES() {
-		new PayFineUI(new pAY_fINE_cONTROL()).RuN();		
+	
+	private static void PAY_FINES() {
+		new PayFineUI(new PayFineControl()).RuN();
 	}
 
 
 	private static void LIST_CURRENT_LOANS() {
 		output("");
-		for (Loan loan : LIB.lISt_CuRrEnT_LoAnS()) {
+		for (Loan loan : LIB.listCurrentLoans()) {
 			output(loan + "\n");
 		}		
 	}
@@ -151,7 +159,7 @@ public class Main {
 
 	private static void LIST_BOOKS() {
 		output("");
-		for (Book book : LIB.lIsT_BoOkS()) {
+		for (Book book : LIB.listBooks()) {
 			output(book + "\n");
 		}		
 	}
@@ -160,7 +168,7 @@ public class Main {
 
 	private static void LIST_MEMBERS() {
 		output("");
-		for (Member member : LIB.lIsT_MeMbErS()) {
+		for (Member member : LIB.listMembers()) {
 			output(member + "\n");
 		}		
 	}
@@ -168,7 +176,7 @@ public class Main {
 
 
 	private static void BORROW_BOOK() {
-		new BorrowBookUI(new bORROW_bOOK_cONTROL()).RuN();		
+		new BorrowBookUI(new BorrowBookControl()).RuN();
 	}
 
 
@@ -186,8 +194,8 @@ public class Main {
 		try {
 			int days = Integer.valueOf(input("Enter number of days: ")).intValue();
 			CAL.incrementDate(days);
-			LIB.cHeCk_CuRrEnT_LoAnS();
-			output(SDF.format(CAL.gEt_DaTe()));
+			LIB.checkCurrentLoans();
+			output(SDF.format(CAL.getDate()));
 			
 		} catch (NumberFormatException e) {
 			 output("\nInvalid number of days\n");
@@ -200,7 +208,7 @@ public class Main {
 		String AuThOr = input("Enter author: ");
 		String TiTlE  = input("Enter title: ");
 		String CaLl_NuMbEr = input("Enter call number: ");
-		Book BoOk = LIB.aDd_BoOk(AuThOr, TiTlE, CaLl_NuMbEr);
+		Book BoOk = LIB.addBook(AuThOr, TiTlE, CaLl_NuMbEr);
 		output("\n" + BoOk + "\n");
 		
 	}
@@ -212,7 +220,7 @@ public class Main {
 			String FiRsT_NaMe  = input("Enter first name: ");
 			String EmAiL_AdDrEsS = input("Enter email address: ");
 			int PhOnE_NuMbEr = Integer.valueOf(input("Enter phone number: ")).intValue();
-			Member MeMbEr = LIB.aDd_MeMbEr(LaSt_NaMe, FiRsT_NaMe, EmAiL_AdDrEsS, PhOnE_NuMbEr);
+			Member MeMbEr = LIB.addMember(LaSt_NaMe, FiRsT_NaMe, EmAiL_AdDrEsS, PhOnE_NuMbEr);
 			output("\n" + MeMbEr + "\n");
 			
 		} catch (NumberFormatException e) {
