@@ -9,19 +9,19 @@ public class PayFineUI {
 
 	private PayFineControl control;
 	private Scanner input;
-	private UiState StAtE;
+	private UiState state;
 
 	
 	public PayFineUI(PayFineControl control) {
 		this.control = control;
 		input = new Scanner(System.in);
-		StAtE = UiState.INITIALISED;
+		state = UiState.INITIALISED;
 		control.SetUi(this);
 	}
 	
 	
 	public void SetState(UiState state) {
-		this.StAtE = state;
+		this.state = state;
 	}
 
 
@@ -30,7 +30,7 @@ public class PayFineUI {
 		
 		while (true) {
 			
-			switch (StAtE) {
+			switch (state) {
 			
 			case READY:
 				String Mem_Str = input("Swipe member card (press <enter> to cancel): ");
