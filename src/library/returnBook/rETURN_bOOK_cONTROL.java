@@ -39,7 +39,9 @@ public class rETURN_bOOK_cONTROL {
 			Ui.DiSpLaY("Invalid Book Id");
 			return;
 		}
+
 		if (!cUrReNt_bOoK.isOnLoan()) {
+
 			Ui.DiSpLaY("Book has not been borrowed");
 			return;
 		}		

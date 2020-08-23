@@ -143,7 +143,9 @@ public class Library implements Serializable {
 	
 	public Book addBook(String author, String title, String callNo) {		
 		Book book = new Book(author, title, callNo, getNextBookId());
+
 		catalog.put(book.getId(), book);
+
 		return book;
 	}
 
@@ -194,9 +196,11 @@ public class Library implements Serializable {
 		Date dueDate = Calendar.getInstance().getDueDate(LOAN_PERIOD);
 		Loan loan = new Loan(getNextLoanId(), book, member, dueDate);
 		member.TaKe_Out_Loan(loan);
+
 		book.hasBorrowed();
 		loans.put(loan.GetId(), loan);
 		currentLoans.put(book.getId(), loan);
+
 		return loan;
 	}
 	
@@ -233,7 +237,9 @@ public class Library implements Serializable {
 			damagedBooks.put(book.getId(), book);
 		}
 		currentLoan.Discharge();
+
 		currentLoans.remove(book.getId());
+
 	}
 
 
