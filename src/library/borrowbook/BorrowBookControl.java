@@ -32,6 +32,7 @@ public class BorrowBookControl {
 		this.library = Library.getInstance();
 		state = ControlState.INITIALISED;
 	}
+	
 
 	public void setUi(BorrowBookUI ui) {
 		if (!state.equals(ControlState.INITIALISED)) {
