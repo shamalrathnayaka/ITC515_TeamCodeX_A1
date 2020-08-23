@@ -73,7 +73,7 @@ public class BorrowBookControl {
 			ui.display("Invalid bookId");
 			return;
 		}
-		if (!book.is_Available()) {
+		if (!book.isAvailable()) {
 			ui.display("Book cannot be borrowed");
 			return;
 		}
