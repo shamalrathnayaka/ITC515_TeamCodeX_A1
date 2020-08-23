@@ -20,12 +20,12 @@ public class PayFineUI {
 	}
 	
 	
-	public void SeT_StAtE(UiState state) {
+	public void SetState(UiState state) {
 		this.StAtE = state;
 	}
 
 
-	public void RuN() {
+	public void Run() {
 		output("Pay Fine Use Case UI\n");
 		
 		while (true) {
@@ -88,12 +88,12 @@ public class PayFineUI {
 	}	
 		
 		
-	private void output(Object object) {
+	private void Output(Object object) {
 		System.out.println(object);
 	}	
 			
 
-	public void DiSplAY(Object object) {
+	public void Display(Object object) {
 		output(object);
 	}
 
