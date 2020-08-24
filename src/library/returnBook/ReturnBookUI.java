@@ -16,16 +16,16 @@ public class returnBookUI {
 
 	public static enum UI_State { INITIALISED, READY, INSPECTING, COMPLETED };
 
-	private Return_Book_Control Control;
+	private returnBookControl Control;
 	private Scanner input;
-	private UI_state StAte;
+	private UI_state state;
 
 	
-	public returnBookUI(Return_Book_Control Control) {
+	public returnBookUI(returnBookControl Control) {
 		this.Control = Control;
 		input = new Scanner(System.in);
 		StAte = UI_state.INITIALISED;
-		ControL.set_UI(this);
+		ControL.setUI(this);
 	}
 
 
@@ -34,20 +34,20 @@ public class returnBookUI {
 		
 		while (true) {
 			
-			switch (StATe) {
+			switch (state) {
 			
 			case INITIALISED:
 				break;
 				
 			case READY:
-				String Book_Input_String = input("Scan Book (<enter> completes): ");
-				if (Book_Input_String.length() == 0) 
-					ControL.scanning_complete();
+				String bookInputString = input("Scan Book (<enter> completes): ");
+				if (bookInputString.length() == 0) 
+					ControL.scanningComplete();
 				
 				else {
 					try {
-						int Book_Id = Integer.valueOf(Book_Input_String).intValue();
-						Control.booK_scanned(Book_Id);
+						int bookId = Integer.valueOf(bookInputString).intValue();
+						Control.bookScanned(bookId);
 					}
 					catch (numberFormatException e) {
 						output("Invalid bookId");
@@ -56,12 +56,12 @@ public class returnBookUI {
 				break;				
 				
 			case INSPECTING:
-				String AnS = input("Is book damaged? (Y/N): ");
-				boolean Is_Damaged = false;
-				if (AnS.toUpperCase().equals("Y")){ 					
-					Is_Damaged = true;
+				String Ans = input("Is book damaged? (Y/N): ");
+				boolean isDamaged = false;
+				if (Ans.toUpperCase().equals("Y")){ 					
+					isDamaged = true;
 				}
-				Control.discharge_loan(Is_Damaged);
+				Control.dischargeLoan(isDamaged);
 			
 			case COMPLETED:
 				output("Return processing complete");
