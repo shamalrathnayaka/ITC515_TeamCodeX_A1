@@ -24,7 +24,7 @@ public class returnBookUI {
 	public returnBookUI(returnBookControl Control) {
 		this.Control = Control;
 		input = new Scanner(System.in);
-		StAte = UI_state.INITIALISED;
+		state = UI_state.INITIALISED;
 		ControL.setUI(this);
 	}
 
