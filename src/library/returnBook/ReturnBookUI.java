@@ -16,16 +16,16 @@ public class returnBookUI {
 
 	public static enum uiState { INITIALISED, READY, INSPECTING, COMPLETED };
 
-	private returnBookControl Control;
+	private returnBookControl control;
 	private Scanner input;
 	private uiState state;
 
 	
-	public returnBookUI(returnBookControl Control) {
-		this.Control = Control;
+	public returnBookUI(returnBookControl control) {
+		this.Control = control;
 		input = new Scanner(System.in);
 		state = uiState.INITIALISED;
-		ControL.setUI(this);
+		controL.setUI(this);
 	}
 
 
@@ -41,9 +41,9 @@ public class returnBookUI {
 				
 			case READY:
 				String bookInputString = input("Scan Book (<enter> completes): ");
-				if (bookInputString.length() == 0) 
-					ControL.scanningComplete();
-				
+				if (bookInputString.length() == 0){ 
+					controL.scanningComplete();
+				}
 				else {
 					try {
 						int bookId = Integer.valueOf(bookInputString).intValue();
@@ -56,9 +56,9 @@ public class returnBookUI {
 				break;				
 				
 			case INSPECTING:
-				String Ans = input("Is book damaged? (Y/N): ");
+				String ans = input("Is book damaged? (Y/N): ");
 				boolean isDamaged = false;
-				if (Ans.toUpperCase().equals("Y")){ 					
+				if (ans.toUpperCase().equals("Y")){ 					
 					isDamaged = true;
 				}
 				Control.dischargeLoan(isDamaged);
@@ -69,14 +69,14 @@ public class returnBookUI {
 			
 			default:
 				output("Unhandled state");
-				throw new runtimeException("returnBookUI : unhandled state :" + StATe);			
+				throw new runtimeException("returnBookUI : unhandled state :" + state);			
 			}
 		}
 	}
 
 	
-	private String input(String Prompt) {
-		System.out.print(Prompt);
+	private String input(String prompt) {
+		System.out.print(prompt);
 		return input.nextLine();
 	}	
 		
