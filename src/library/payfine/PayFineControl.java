@@ -13,54 +13,54 @@ public class PayFineControl {
 
 
 	public PayFineControl() {
-		this.LiBrArY = Library.getInstance();
-		state = cOnTrOl_sTaTe.INITIALISED;
+		this.library = Library.getInstance();
+		state = ControlState.INITIALISED;
 	}
 	
 	
 	public void SetUI(PayFineUI ui) {
-		if (!state.equals(cOnTrOl_sTaTe.INITIALISED)) {
+		if (!state.equals(ControlState.INITIALISED)) {
 			throw new RuntimeException("PayFineControl: cannot call setUI except in INITIALISED state");
 		}	
 		this.ui = ui;
 		ui.SeT_StAtE(PayFineUI.uI_sTaTe.READY);
-		state = cOnTrOl_sTaTe.READY;
+		state = ControlState.READY;
 	}
 
 
 	public void CaRd_sWiPeD(int MeMbEr_Id) {
-		if (!state.equals(cOnTrOl_sTaTe.READY))
+		if (!state.equals(ControlState.READY))
 			throw new RuntimeException("PayFineControl: cannot call cardSwiped except in READY state");
-			
-		MeMbEr = LiBrArY.getMember(MeMbEr_Id);
+
+		member = library.getMember(MeMbEr_Id);
 		
-		if (MeMbEr == null) {
+		if (member == null) {
 			ui.DiSplAY("Invalid Member Id");
 			return;
 		}
-		ui.DiSplAY(MeMbEr.toString());
+		ui.DiSplAY(member.toString());
 		ui.SeT_StAtE(PayFineUI.uI_sTaTe.PAYING);
-		state = cOnTrOl_sTaTe.PAYING;
+		state = ControlState.PAYING;
 	}
 	
 	
 	public void CaNcEl() {
 		ui.SeT_StAtE(PayFineUI.uI_sTaTe.CANCELLED);
-		state = cOnTrOl_sTaTe.CANCELLED;
+		state = ControlState.CANCELLED;
 	}
 
 
 	public double PaY_FiNe(double AmOuNt) {
-		if (!state.equals(cOnTrOl_sTaTe.PAYING))
+		if (!state.equals(ControlState.PAYING))
 			throw new RuntimeException("PayFineControl: cannot call payFine except in PAYING state");
 			
-		double ChAnGe = MeMbEr.payFine(AmOuNt);
+		double ChAnGe = member.payFine(AmOuNt);
 		if (ChAnGe > 0)
 			ui.DiSplAY(String.format("Change: $%.2f", ChAnGe));
 
-		ui.DiSplAY(MeMbEr.toString());
+		ui.DiSplAY(member.toString());
 		ui.SeT_StAtE(PayFineUI.uI_sTaTe.COMPLETED);
-		state = cOnTrOl_sTaTe.COMPLETED;
+		state = ControlState.COMPLETED;
 		return ChAnGe;
 	}
 	
