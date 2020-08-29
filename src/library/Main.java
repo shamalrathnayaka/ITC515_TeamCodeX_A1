@@ -170,11 +170,11 @@ public class Main {
 	}
 
 	private static void returnBook() {
-		new ReturnBookUI(new rETURN_bOOK_cONTROL()).RuN();		
+		new ReturnBookUI(new rETURN_bOOK_cONTROL()).run();		
 	}
 
 	private static void fixBooks() {
-		new FixBookUi(new FixBookControl()).RuN();		
+		new FixBookUi(new FixBookControl()).run();		
 	}
 
 	private static void incrementDate() {
