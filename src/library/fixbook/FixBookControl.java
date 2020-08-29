@@ -51,12 +51,12 @@ public class FixBookControl {
 
 
 	public void FixBook(boolean mustFix) {
-		if (!State.equals(ControlState.FIXING)) 
+		if (!State.equals(ControlState.FIXING)) {
 			throw new RuntimeException("FixBookControl: cannot call fixBook except in FIXING state");
-			
-		if (mustFix) 
+		}
+		if (mustFix) {
 			library.repairBook(currentBook);
-		
+		}
 		currentBook = null;
 		ui.SeT_StAtE(FixBookUI.uI_sTaTe.READY);
 		State = ControlState.READY;		
@@ -64,9 +64,9 @@ public class FixBookControl {
 
 	
 	public void ScanningComplete() {
-		if (!State.equals(ControlState.READY)) 
+		if (!State.equals(ControlState.READY)) {
 			throw new RuntimeException("FixBookControl: cannot call scanningComplete except in READY state");
-			
+		}
 		ui.SeT_StAtE(FixBookUI.uI_sTaTe.COMPLETED);		
 	}
 
