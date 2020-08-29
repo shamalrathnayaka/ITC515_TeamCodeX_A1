@@ -17,8 +17,8 @@ import library.entities.Calendar;
 import library.entities.Library;
 import library.entities.Loan;
 import library.entities.Member;
-import library.fixbook.FixBookUI;
-import library.fixbook.fIX_bOOK_cONTROL;
+import library.fixbook.FixBookUi;
+import library.fixbook.FixBookControl;
 import library.payfine.PayFineUI;
 import library.payfine.PayFineControl;
 import library.returnBook.ReturnBookUI;
@@ -170,11 +170,11 @@ public class Main {
 	}
 
 	private static void returnBook() {
-		new ReturnBookUI(new rETURN_bOOK_cONTROL()).RuN();		
+		new ReturnBookUI(new rETURN_bOOK_cONTROL()).run();		
 	}
 
 	private static void fixBooks() {
-		new FixBookUI(new fIX_bOOK_cONTROL()).RuN();		
+		new FixBookUi(new FixBookControl()).run();		
 	}
 
 	private static void incrementDate() {
