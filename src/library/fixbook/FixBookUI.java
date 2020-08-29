@@ -34,7 +34,7 @@ public class FixBookUI {
 			case READY:
 				String BoOk_EnTrY_StRiNg = iNpUt("Scan Book (<enter> completes): ");
 				if (BoOk_EnTrY_StRiNg.length() == 0) 
-					CoNtRoL.SCannING_COMplete();
+					CoNtRoL.ScanningComplete();
 				
 				else {
 					try {
@@ -53,7 +53,7 @@ public class FixBookUI {
 				if (AnS.toUpperCase().equals("Y")) 
 					FiX = true;
 				
-				CoNtRoL.FiX_BoOk(FiX);
+				CoNtRoL.FixBook(FiX);
 				break;
 								
 			case COMPLETED:
