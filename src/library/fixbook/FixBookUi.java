@@ -2,25 +2,25 @@ package library.fixbook;
 import java.util.Scanner;
 
 
-public class FixBookUI {
+public class FixBookUi {
 
-	public static enum uI_sTaTe { INITIALISED, READY, FIXING, COMPLETED };
+	public static enum Uistate { INITIALISED, READY, FIXING, COMPLETED };
 
-	private FixBookControl CoNtRoL;
-	private Scanner InPuT;
-	private uI_sTaTe StAtE;
+	private FixBookControl control;
+	private Scanner input;
+	private Uistate state;
 
 	
-	public FixBookUI(FixBookControl CoNtRoL) {
-		this.CoNtRoL = CoNtRoL;
-		InPuT = new Scanner(System.in);
-		StAtE = uI_sTaTe.INITIALISED;
-		CoNtRoL.SetUi(this);
+	public FixBookUi(FixBookControl control) {
+		this.control = control;
+		input = new Scanner(System.in);
+		state = Uistate.INITIALISED;
+		control.SetUi(this);
 	}
 
 
-	public void SeT_StAtE(uI_sTaTe state) {
-		this.StAtE = state;
+	public void SeT_StAtE(Uistate state) {
+		this.state = state;
 	}
 
 	
@@ -29,17 +29,17 @@ public class FixBookUI {
 		
 		while (true) {
 			
-			switch (StAtE) {
+			switch (state) {
 			
 			case READY:
 				String BoOk_EnTrY_StRiNg = iNpUt("Scan Book (<enter> completes): ");
 				if (BoOk_EnTrY_StRiNg.length() == 0) 
-					CoNtRoL.ScanningComplete();
+					control.ScanningComplete();
 				
 				else {
 					try {
 						int BoOk_Id = Integer.valueOf(BoOk_EnTrY_StRiNg).intValue();
-						CoNtRoL.BookScanned(BoOk_Id);
+						control.BookScanned(BoOk_Id);
 					}
 					catch (NumberFormatException e) {
 						OuTpUt("Invalid bookId");
@@ -53,7 +53,7 @@ public class FixBookUI {
 				if (AnS.toUpperCase().equals("Y")) 
 					FiX = true;
 				
-				CoNtRoL.FixBook(FiX);
+				control.FixBook(FiX);
 				break;
 								
 			case COMPLETED:
@@ -62,7 +62,7 @@ public class FixBookUI {
 			
 			default:
 				OuTpUt("Unhandled state");
-				throw new RuntimeException("FixBookUI : unhandled state :" + StAtE);			
+				throw new RuntimeException("FixBookUI : unhandled state :" + state);			
 			
 			}		
 		}
@@ -72,7 +72,7 @@ public class FixBookUI {
 	
 	private String iNpUt(String prompt) {
 		System.out.print(prompt);
-		return InPuT.nextLine();
+		return input.nextLine();
 	}	
 		
 		
