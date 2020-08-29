@@ -6,16 +6,16 @@ public class FixBookUI {
 
 	public static enum uI_sTaTe { INITIALISED, READY, FIXING, COMPLETED };
 
-	private fIX_bOOK_cONTROL CoNtRoL;
+	private FixBookControl CoNtRoL;
 	private Scanner InPuT;
 	private uI_sTaTe StAtE;
 
 	
-	public FixBookUI(fIX_bOOK_cONTROL CoNtRoL) {
+	public FixBookUI(FixBookControl CoNtRoL) {
 		this.CoNtRoL = CoNtRoL;
 		InPuT = new Scanner(System.in);
 		StAtE = uI_sTaTe.INITIALISED;
-		CoNtRoL.SeT_Ui(this);
+		CoNtRoL.SetUi(this);
 	}
 
 
@@ -39,7 +39,7 @@ public class FixBookUI {
 				else {
 					try {
 						int BoOk_Id = Integer.valueOf(BoOk_EnTrY_StRiNg).intValue();
-						CoNtRoL.BoOk_ScAnNeD(BoOk_Id);
+						CoNtRoL.BookScanned(BoOk_Id);
 					}
 					catch (NumberFormatException e) {
 						OuTpUt("Invalid bookId");
