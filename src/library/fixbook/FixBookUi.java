@@ -32,14 +32,14 @@ public class FixBookUi {
 			switch (state) {
 			
 			case READY:
-				String BoOk_EnTrY_StRiNg = input("Scan Book (<enter> completes): ");
-				if (BoOk_EnTrY_StRiNg.length() == 0) 
+				String bookEntryString = input("Scan Book (<enter> completes): ");
+				if (bookEntryString.length() == 0) {
 					control.ScanningComplete();
-				
+				}
 				else {
 					try {
-						int BoOk_Id = Integer.valueOf(BoOk_EnTrY_StRiNg).intValue();
-						control.BookScanned(BoOk_Id);
+						int bookId = Integer.valueOf(bookEntryString).intValue();
+						control.BookScanned(bookId);
 					}
 					catch (NumberFormatException e) {
 						output("Invalid bookId");
@@ -48,12 +48,12 @@ public class FixBookUi {
 				break;	
 				
 			case FIXING:
-				String AnS = input("Fix Book? (Y/N) : ");
-				boolean FiX = false;
-				if (AnS.toUpperCase().equals("Y")) 
-					FiX = true;
-				
-				control.FixBook(FiX);
+				String answer = input("Fix Book? (Y/N) : ");
+				boolean fix = false;
+				if (answer.toUpperCase().equals("Y")) {
+					fix = true;
+				}
+				control.FixBook(fix);
 				break;
 								
 			case COMPLETED:
