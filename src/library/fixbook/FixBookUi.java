@@ -15,7 +15,7 @@ public class FixBookUi {
 		this.control = control;
 		input = new Scanner(System.in);
 		state = Uistate.INITIALISED;
-		control.SetUi(this);
+		control.setUi(this);
 	}
 
 
@@ -34,12 +34,12 @@ public class FixBookUi {
 			case READY:
 				String bookEntryString = input("Scan Book (<enter> completes): ");
 				if (bookEntryString.length() == 0) {
-					control.ScanningComplete();
+					control.scanningComplete();
 				}
 				else {
 					try {
 						int bookId = Integer.valueOf(bookEntryString).intValue();
-						control.BookScanned(bookId);
+						control.bookScanned(bookId);
 					}
 					catch (NumberFormatException e) {
 						output("Invalid bookId");
@@ -53,7 +53,7 @@ public class FixBookUi {
 				if (answer.toUpperCase().equals("Y")) {
 					fix = true;
 				}
-				control.FixBook(fix);
+				control.fixBook(fix);
 				break;
 								
 			case COMPLETED:
