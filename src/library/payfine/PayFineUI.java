@@ -16,12 +16,11 @@ public class PayFineUI {
 		this.control = control;
 		input = new Scanner(System.in);
 		state = UiState.INITIALISED;
-		control.SetUI(this);
+		control.SetUi(this);
 	}
 	
 	
 	public void SetState(UiState state) {
-
 		this.state = state;
 	}
 
@@ -90,13 +89,11 @@ public class PayFineUI {
 		
 		
 	private void Output(Object object) {
-
 		System.out.println(object);
 	}	
 			
 
 	public void Display(Object object) {
-
 		output(object);
 	}
 
