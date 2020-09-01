@@ -16,7 +16,7 @@ public class PayFineUI {
 		this.control = control;
 		input = new Scanner(System.in);
 		state = UiState.INITIALISED;
-		control.SeT_uI(this);
+		control.SetUi(this);
 	}
 	
 	
@@ -26,7 +26,7 @@ public class PayFineUI {
 
 
 	public void Run() {
-		Output(("Pay Fine Use Case UI\n"));
+		output("Pay Fine Use Case UI\n");
 		
 		while (true) {
 			
@@ -43,7 +43,7 @@ public class PayFineUI {
 					control.CaRd_sWiPeD(Member_ID);
 				}
 				catch (NumberFormatException e) {
-					Output("Invalid memberId");
+					output("Invalid memberId");
 				}
 				break;
 				
@@ -59,22 +59,22 @@ public class PayFineUI {
 				}
 				catch (NumberFormatException e) {}
 				if (AmouNT <= 0) {
-					Output("Amount must be positive");
+					output("Amount must be positive");
 					break;
 				}
 				control.PaY_FiNe(AmouNT);
 				break;
 								
 			case CANCELLED:
-				Output("Pay Fine process cancelled");
+				output("Pay Fine process cancelled");
 				return;
 			
 			case COMPLETED:
-				Output("Pay Fine process complete");
+				output("Pay Fine process complete");
 				return;
 			
 			default:
-				Output("Unhandled state");
+				output("Unhandled state");
 				throw new RuntimeException("FixBookUI : unhandled state :" + state);
 			
 			}		
@@ -94,7 +94,7 @@ public class PayFineUI {
 			
 
 	public void Display(Object object) {
-		Output(object);
+		output(object);
 	}
 
 
