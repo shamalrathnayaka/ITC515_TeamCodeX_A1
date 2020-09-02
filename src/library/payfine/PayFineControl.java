@@ -23,7 +23,7 @@ public class PayFineControl {
 			throw new RuntimeException("PayFineControl: cannot call setUI except in INITIALISED state");
 		}	
 		this.Ui = uI;
-		uI.SetState((PayFineUI.UiState.READY));
+		uI.SeT_StAtE(PayFineUI.uI_sTaTe.READY);
 		StAtE = cOnTrOl_sTaTe.READY;		
 	}
 
@@ -35,17 +35,17 @@ public class PayFineControl {
 		MeMbEr = LiBrArY.getMember(MeMbEr_Id);
 		
 		if (MeMbEr == null) {
-			Ui.Display("Invalid Member Id");
+			Ui.DiSplAY("Invalid Member Id");
 			return;
 		}
-		Ui.Display(MeMbEr.toString());
-		Ui.SetState((PayFineUI.UiState.PAYING));
+		Ui.DiSplAY(MeMbEr.toString());
+		Ui.SeT_StAtE(PayFineUI.uI_sTaTe.PAYING);
 		StAtE = cOnTrOl_sTaTe.PAYING;
 	}
 	
 	
 	public void CaNcEl() {
-		Ui.SetState((PayFineUI.UiState.CANCELLED));
+		Ui.SeT_StAtE(PayFineUI.uI_sTaTe.CANCELLED);
 		StAtE = cOnTrOl_sTaTe.CANCELLED;
 	}
 
@@ -56,10 +56,10 @@ public class PayFineControl {
 			
 		double ChAnGe = MeMbEr.payFine(AmOuNt);
 		if (ChAnGe > 0) 
-			Ui.Display(String.format("Change: $%.2f", ChAnGe));
+			Ui.DiSplAY(String.format("Change: $%.2f", ChAnGe));
 		
-		Ui.Display(MeMbEr.toString());
-		Ui.SetState((PayFineUI.UiState.COMPLETED));
+		Ui.DiSplAY(MeMbEr.toString());
+		Ui.SeT_StAtE(PayFineUI.uI_sTaTe.COMPLETED);
 		StAtE = cOnTrOl_sTaTe.COMPLETED;
 		return ChAnGe;
 	}
