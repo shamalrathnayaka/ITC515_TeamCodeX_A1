@@ -21,8 +21,8 @@ import library.fixbook.FixBookUi;
 import library.fixbook.FixBookControl;
 import library.payfine.PayFineUI;
 import library.payfine.PayFineControl;
-import library.returnBook.ReturnBookUI;
-import library.returnBook.rETURN_bOOK_cONTROL;
+import library.returnBook.returnBookUI;
+import library.returnBook.returnBookControl;
 
 public class Main {
 	
@@ -170,11 +170,11 @@ public class Main {
 	}
 
 	private static void returnBook() {
-		new ReturnBookUI(new rETURN_bOOK_cONTROL()).run();		
+		new returnBookUI(new returnBookControl()).Run();
 	}
 
 	private static void fixBooks() {
-		new FixBookUi(new FixBookControl()).run();		
+		new FixBookUi(new FixBookControl()).run();
 	}
 
 	private static void incrementDate() {
