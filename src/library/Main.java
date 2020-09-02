@@ -170,7 +170,7 @@ public class Main {
 	}
 
 	private static void returnBook() {
-		new ReturnBookUI(new rETURN_bOOK_cONTROL()).run();
+		new returnBookUI(new returnBookControl()).Run();
 	}
 
 	private static void fixBooks() {

@@ -22,10 +22,10 @@ public class returnBookUI {
 
 	
 	public returnBookUI(returnBookControl control) {
-		this.Control = control;
+		this.control = control;
 		input = new Scanner(System.in);
 		state = uiState.INITIALISED;
-		controL.setUI(this);
+		control.setUi(this);
 	}
 
 
@@ -42,14 +42,14 @@ public class returnBookUI {
 			case READY:
 				String bookInputString = input("Scan Book (<enter> completes): ");
 				if (bookInputString.length() == 0){ 
-					controL.scanningComplete();
+					control.scanningComplete();
 				}
 				else {
 					try {
 						int bookId = Integer.valueOf(bookInputString).intValue();
-						Control.bookScanned(bookId);
+						control.bookScanned(bookId);
 					}
-					catch (numberFormatException e) {
+					catch (NumberFormatException e) {
 						output("Invalid bookId");
 					}					
 				}
@@ -61,7 +61,7 @@ public class returnBookUI {
 				if (ans.toUpperCase().equals("Y")){ 					
 					isDamaged = true;
 				}
-				Control.dischargeLoan(isDamaged);
+				control.dischargeLoan(isDamaged);
 			
 			case COMPLETED:
 				output("Return processing complete");
@@ -69,7 +69,7 @@ public class returnBookUI {
 			
 			default:
 				output("Unhandled state");
-				throw new runtimeException("returnBookUI : unhandled state :" + state);			
+				throw new RuntimeException("returnBookUI : unhandled state :" + state);
 			}
 		}
 	}
